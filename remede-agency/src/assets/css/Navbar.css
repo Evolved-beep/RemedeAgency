@@ -46,3 +46,36 @@
     max-width: 100%;
     width: 200px;
   }
+
+  .container_nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .user_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+  }
+
+  .user_container p {
+    margin: 0 0 0 10px;
+  }
+
+  .user_container a {
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+  }
+  .logout_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container_nav i {
+    font-size: 25px;
+  }

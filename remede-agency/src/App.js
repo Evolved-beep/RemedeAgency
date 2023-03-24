@@ -1,21 +1,21 @@
 import './App.css';
 import Navbar from './component/Navbar';
 import Homepage from './pages/Home';
-import { Routes, Route, BrowserRouter} from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Login from './pages/Login';
 import Footer from './component/Footer';
+import Profile from './pages/Profile';
 
 
 function App() {
   return (
     <div className="App">
         <Navbar />
-        <BrowserRouter>
           <Routes>
             <Route path='/' element={<Homepage />} />
             <Route path='/sign-in' element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
-        </BrowserRouter>
         <Footer />
       </div>
   );
