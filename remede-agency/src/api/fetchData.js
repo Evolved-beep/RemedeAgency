@@ -12,7 +12,6 @@ export const getToken = async (value) => {
             password: value.password
         })
     };
-    console.log(value)
     const response = await fetch(`${URL}/user/login`, requestOptions)
     const data = await response.json()
     return data.body.token
@@ -20,7 +19,6 @@ export const getToken = async (value) => {
 
 
 export const getUserData = async (token) => {
-    console.log(token)
         const options = {
             method: "POST",
             headers: {'Content-Type':'application/json',
@@ -41,15 +39,17 @@ export const editValueUser = async (token, value) => {
     const options = {
         method: 'PUT',
         headers: {"Content-Type" : 'application/json',
-        "Authorization" : `Bearer ${token}`
-    }
-        /* body: JSON.stringify({
-            firstName: 
-            lastName: 
-        }) */
-    }
+        "Authorization" : `Bearer ${token}`},
+        body: JSON.stringify({
+           firstName: value.name, 
+           lastName: value.lastname
+       }) 
+}
     const response = await fetch(`${URL}/user/profile`, options)
     const data = await response.json()
-    console.log(data)
-    return data
+    const userTest = {
+        firstname: data.body.firstName,
+        lastname : data.body.lastName
+    }
+    return userTest
 }

@@ -4,19 +4,20 @@ import Logo from "../assets/img/argentBankLogo.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket, faRightToBracket, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { addToken } from "../auth/Authuser";
-import { useSelector } from "react-redux";
-import { getUserData } from "../api/fetchData";
-
+import { loggoutUser } from "../auth/Authuser";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
-
-    const selector = useSelector(state => state.login.token)
+    const isLogged = useSelector(state => state.login.isLoggin)
     const userName = useSelector(state => state.login.user.firstName)
     const userCircle = <FontAwesomeIcon icon={faUserCircle} />
     const loginIcon = <FontAwesomeIcon icon={faRightToBracket}/>
     const logoutIcon = <FontAwesomeIcon icon={faRightFromBracket} />
-    console.log(selector)
+    const dispatch = useDispatch()
+    console.log(isLogged)
+    const handleLogout = () => {
+      dispatch(loggoutUser())
+    }
     return(
         <nav class="main-nav">
         <Link to="/">
@@ -28,9 +29,9 @@ const Navbar = () => {
         </Link>
           <h1 class="sr-only">Argent Bank</h1>
         <div>
-      {!selector ? (
+      {!isLogged ? (
         <div className="container_nav">
-          <Link to='/sign-in'><i class="fa-light fa-right-to-bracket">{loginIcon}</i></Link>
+          <Link to='/sign-in'><p>Sign in</p></Link>
         </div>
       ): (
         <div className="container_nav">
@@ -40,8 +41,10 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="logout_container">
-            <i class="fa-regular fa-right-from-bracket">{logoutIcon}</i>
-            <p>Logout</p>
+            <Link to="/">
+              <i class="fa-regular fa-right-from-bracket">{logoutIcon}</i>
+              <p onClick={handleLogout}>Logout</p>
+            </Link>
           </div>
         </div>
       )}

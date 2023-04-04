@@ -1,20 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loadingItem } from "../api/localStorage";
+import { useSelector } from "react-redux";
 import EditProfile from "../component/EditProfile";
 
 
 const Profile = () => {
-    const dispatch = useDispatch()
-    let Token = useSelector(state => state.login.token)
     let userName = useSelector(state => state.login.user.firstName)
-    let userLastName = useSelector(state => state.login.user.lastName)
-    const [name] = useState(userName)
-    const [lastname] = useState(userLastName)
-    console.log(name)
-    console.log(lastname)
-    console.log(Token)
-    
+
     return(
         <main className="main bg-dark">
           <div className="header">

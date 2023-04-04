@@ -4,7 +4,7 @@ import {getToken, getUserData} from '../api/fetchData'
 import { useNavigate } from "react-router-dom";
 import {useDispatch} from "react-redux"
 import { loadingItem, stockItem } from "../api/localStorage";
-import {addToken, userValue} from '../auth/Authuser'
+import {addToken, loggedin, userValue} from '../auth/Authuser'
 
 
 
@@ -13,7 +13,6 @@ const Form = () => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const loadToken = loadingItem('token')
     const inputValue = {email, password} 
 
     const handleSubmit = async (e) => {
@@ -23,6 +22,7 @@ const Form = () => {
       dispatch(addToken(token))
       const userData = await getUserData(token)
       dispatch(userValue(userData))
+      dispatch(loggedin())
       {token ? navigate("/profile") : navigate("sign-in")}
     }
     return(
