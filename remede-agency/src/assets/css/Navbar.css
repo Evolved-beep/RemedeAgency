@@ -83,7 +83,15 @@
     text-decoration: none;
   }
 
+  .logout_container p {
+    margin: 0 0 0 10px;
+  }
+
   .container_nav i {
     font-size: 25px;
+  }
+
+  .container_nav a{
+    text-decoration: none;
   }
 
